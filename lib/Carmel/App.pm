@@ -558,7 +558,7 @@ sub cmd_diff {
         my $path = Path::Tiny->tempfile;
         $path->spew($content);
 
-        my $diff = Carmel::Difftool->new;
+        my $diff = Carmel::Difftool->new(env => $self->env);
         $diff->diff($path, $snapshot_path);
     }
 }
@@ -568,7 +568,7 @@ sub cmd_difftool {
 
     require Carmel::Difftool;
 
-    my $diff = Carmel::Difftool->new;
+    my $diff = Carmel::Difftool->new(env => $self->env);
     $diff->diff(@args);
 }
 
